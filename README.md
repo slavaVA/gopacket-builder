@@ -9,15 +9,15 @@ The following dependencies added in base golang:alpine image:
 
 GOROOT and GOPATH environment variables left without changes.
 
-### Using with Docker
+## Using with Docker
 
 See [the Docker Hub page](https://registry.hub.docker.com/_/golang/) for the full readme on how to use this Docker image and for information regarding contributing and issues.
 
 The full readme is generated over in [docker-library/docs](https://github.com/docker-library/docs), specifically in [docker-library/docs/golang](https://github.com/docker-library/docs/tree/master/golang).
 
-### Using with Rkt
+## Using with Rkt
 
-1. Image fetch
+### Image fetch
 ```
    $ sudo rkt fetch quay.io/slavava/gopacket-builder
 
@@ -27,7 +27,7 @@ The full readme is generated over in [docker-library/docs](https://github.com/do
     sha512-0069d46f0fbf     quay.io/slavava/gopacket-builder:latest         687MiB  4 minutes ago   4 minutes ago
 ```
 
-2. Build Go app inside container
+### Build Go app inside container
 ```
    $ sudo rkt run --volume src,kind=host,source=$PWD,readOnly=false \
         quay.io/slavava/gopacket-builder \
@@ -35,13 +35,14 @@ The full readme is generated over in [docker-library/docs](https://github.com/do
         --inherit-env --set-env=CGO_ENABLED=0 \
         --exec go -- build -o hello -a -tags netgo -ldflags -w . 
 ```
-3. Run command inside container
+### Run command inside container
 ```
    $sudo rkt run quay.io/slavava/gopacket-builder --interactive --exec /bin/sh
 ```
-### Using with "Drone.io"
 
-For build application using gopacket you should create file .drone.yml in root of your project with following content
+## Using with "Drone.io"
+
+For build application using gopacket you should create file .drone.yml in root of your project with following content:
 ```
 clone:
  path: github.com/google/gopacket
@@ -50,4 +51,4 @@ build:
  commands:
    - go install github.com/google/gopacket/examples/httpassembly
 ```
-String "go install github.com/google/gopacket/examples/httpassembly" is used for example of build httpassembly from packet examples
+String "go install github.com/google/gopacket/examples/httpassembly" is used for example of build httpassembly from packet examples.
